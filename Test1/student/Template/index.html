@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Welcome to Template</h1>
+    <p>
+        Name: {{ data.name }} <br>
+        Course: {{ data.course }} <br>
+        Collage: {{ data.collage }} <br>
+    </p>
+
+    <p>List of Course <b>Looping used for</b></p>
+    <ul>
+        {% for sub in subject %}
+        <li>
+            {{ sub }}
+            {% if sub == 'Django' %}
+            <span style=" color:red;"> : Interested Subject</span> 
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+
+
+    <a href="/contact/">Contact</a> <br>
+    <a href="/about/">About</a>
+
+
+</body>
+
+</html>
