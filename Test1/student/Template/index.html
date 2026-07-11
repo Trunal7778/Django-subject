@@ -8,7 +8,10 @@
 </head>
 
 <body>
-    <h1>Welcome to Template</h1>
+    <h1>Welcome to Template</h1> 
+
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Python.svg/1280px-Python.svg.png?utm_source=en.wikiversity.org&utm_campaign=index&utm_content=thumbnail" alt="Python Logo" width="250">
+
     <p>
         Name: {{ data.name }} <br>
         Course: {{ data.course }} <br>
@@ -21,12 +24,23 @@
         <li>
             {{ sub }}
             {% if sub == 'Django' %}
-            <span style=" color:red;"> : Interested Subject</span> 
+            <span style=" color:red;"> : Interested Subject</span>
             {% endif %}
         </li>
         {% endfor %}
     </ul>
 
+    <h2>Student Marks: {{ marks }}</h2>
+
+    {% if marks >= 75 %}
+    <p style="color:green;">Student got Distinction</p>
+    {% elif marks >= 60 %}
+    <p style="color:blue;">Student got First Division</p>
+    {% elif marks >= 35 %}
+    <p style="color:orange;">Student got Second Division</p>
+    {% else %}
+    <p style="color:red;">Student failed</p>
+    {% endif %}
 
     <a href="/contact/">Contact</a> <br>
     <a href="/about/">About</a>
