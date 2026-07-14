@@ -1,23 +1,23 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 {% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>{% block title %}Student Management System{% endblock %}</title>
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
-
-<body>
+<body class="bg-light">
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-gradient shadow-sm" style="background: linear-gradient(90deg,#0d6efd,#6610f2);">
         <div class="container">
-            <a class="navbar-brand" href="#">Student Management System</a>
+            <a class="navbar-brand fw-bold" href="#">
+                <i class="bi bi-mortarboard-fill me-2"></i>Student Management System
+            </a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -26,13 +26,13 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/">Home</a>
+                        <a class="nav-link px-3" href="/"><i class="bi bi-house-door me-1"></i>Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/about">About</a>
+                        <a class="nav-link px-3" href="/about"><i class="bi bi-info-circle me-1"></i>About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/contact">Contact</a>
+                        <a class="nav-link px-3" href="/contact"><i class="bi bi-envelope me-1"></i>Contact</a>
                     </li>
                 </ul>
             </div>
@@ -40,10 +40,12 @@
     </nav>
 
     <!-- Page Header -->
-    <div class="container mt-4">
-        <h1 class="text-center text-primary mb-4">
-            Student Management System
-        </h1>
+    <div class="container mt-5 mb-5">
+        <div class="text-center mb-5">
+            <h1 class="fw-bold text-primary display-5">Student Management System</h1>
+            <p class="text-muted">Manage students, courses, and results in one place</p>
+            <hr class="w-25 mx-auto border-3 border-primary opacity-75">
+        </div>
 
         {% block content %}
         {% endblock %}
@@ -56,11 +58,11 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white text-center p-3 mt-5">
-        &copy; 2026 Student Management System
+    <footer class="text-white text-center p-4 mt-5" style="background: linear-gradient(90deg,#0d6efd,#6610f2);">
+        <i class="bi bi-mortarboard-fill me-1"></i>
+        &copy; 2026 Student Management System. All rights reserved.
     </footer>
 
-    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{% static 'js/script.js' %}"></script>
 </body>

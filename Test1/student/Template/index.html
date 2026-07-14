@@ -7,69 +7,106 @@ Home
 
 {% block content %}
 
+<div class="container">
 
+    <div class="card shadow-lg border-0 rounded-4 p-4 mb-4">
+        <div class="card-body">
 
-<div class="container mt-4">
+            <h2 class="text-center text-primary fw-bold mb-3">
+                <i class="bi bi-stars me-2"></i>Welcome to Student Management System
+            </h2>
 
-    <div class="card shadow p-4">
-        <h2 class="text-center text-primary mb-3">Welcome to Student Management System</h2>
+            <p class="text-center text-muted">This Page Shows the Main Features of the Student Management System</p>
 
+            <div class="text-center mb-4">
+                <img src="{% static 'image/Trunal.jpeg' %}" alt="Demo Image"
+                     class="img-fluid rounded-3 shadow-sm border" height="200" width="300" />
+            </div>
 
+            <h3 class="mt-4 border-bottom pb-2"><i class="bi bi-person-badge me-2 text-primary"></i>Welcome to Trunal's Profile</h3>
 
+            <div class="row g-3 mb-4">
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 bg-primary bg-opacity-10 rounded-3">
+                        <div class="card-body">
+                            <small class="text-muted text-uppercase">Name</small>
+                            <p class="fw-semibold mb-0">{{ data.name }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 bg-success bg-opacity-10 rounded-3">
+                        <div class="card-body">
+                            <small class="text-muted text-uppercase">Course</small>
+                            <p class="fw-semibold mb-0">{{ data.course }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 bg-warning bg-opacity-10 rounded-3">
+                        <div class="card-body">
+                            <small class="text-muted text-uppercase">College</small>
+                            <p class="fw-semibold mb-0">{{ data.collage }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        <p>This is the home page.</p>
+            <h4 class="mt-4 border-bottom pb-2"><i class="bi bi-journal-bookmark me-2 text-primary"></i>List of Courses</h4>
 
-        <img src="{% static 'image/Logo.png' %}" alt="Demo Image" height="200" width="300" />
+            <ul class="list-group list-group-flush shadow-sm rounded-3 mb-4 overflow-hidden">
+                {% for sub in subject %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span><i class="bi bi-check2-circle text-primary me-2"></i>{{ sub }}</span>
+                    {% if sub == 'Django' %}
+                    <span class="badge bg-success rounded-pill">Interested Subject</span>
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
 
-        <h3 class="mt-4">Welcome to the Trunal's Page</h3>
+            <div class="mb-4 d-flex gap-2">
+                <a href="about" class="btn btn-primary px-4 rounded-pill">
+                    <i class="bi bi-info-circle me-1"></i>About
+                </a>
+                <a href="contact" class="btn btn-outline-secondary px-4 rounded-pill">
+                    <i class="bi bi-envelope me-1"></i>Contact
+                </a>
+                <button class="btn btn-outline-primary px-4 rounded-pill" onclick="ShowAlert();">
+                    <i class="bi bi-lightning-charge me-1"></i>Demo static content
+                </button>
+            </div>
 
-        <p><strong>Name:</strong> {{ data.name }}</p>
-        <p><strong>Course:</strong> {{ data.course }}</p>
-        <p><strong>College:</strong> {{ data.collage }}</p>
+            <h3 class="border-bottom pb-2"><i class="bi bi-award me-2 text-primary"></i>Student Result</h3>
 
-        <h4 class="mt-4">List of Courses</h4>
+            {% if Marks >= 75 %}
+            <div class="alert alert-success text-center rounded-3 shadow-sm mt-3">
+                <i class="bi bi-trophy-fill fs-3 d-block mb-2"></i>
+                <strong class="fs-5">Distinction</strong>
+            </div>
 
-        <ul class="list-group mb-4">
-            {% for sub in subject %}
-            <li class="list-group-item">
-                {{ sub }}
-                {% if sub == 'Django' %}
-                <span class="highlight">(Interested Subject)</span>
-                {% endif %}
-            </li>
-            {% endfor %}
-        </ul>
+            {% elif Marks >= 60 %}
+            <div class="alert alert-primary text-center rounded-3 shadow-sm mt-3">
+                <i class="bi bi-award-fill fs-3 d-block mb-2"></i>
+                <strong class="fs-5">First Class</strong>
+            </div>
 
-        <div class="mb-4">
-            <a href="about" class="btn btn-primary">About</a>
-            <a href="contact" class="btn btn-secondary">Contact</a>
-            <button class="btn_custom" onclick="ShowAlert();">Demo static content</button>
+            {% elif Marks >= 35 %}
+            <div class="alert alert-warning text-center rounded-3 shadow-sm mt-3">
+                <i class="bi bi-hand-thumbs-up-fill fs-3 d-block mb-2"></i>
+                <strong class="fs-5">Pass</strong>
+            </div>
+
+            {% else %}
+            <div class="alert alert-danger text-center rounded-3 shadow-sm mt-3">
+                <i class="bi bi-emoji-frown-fill fs-3 d-block mb-2"></i>
+                <strong class="fs-5">Fail</strong>
+            </div>
+            {% endif %}
+
         </div>
-
-        <h3>Student Result</h3>
-
-        {% if Marks >= 75 %}
-        <div class="alert alert-success text-center">
-            <strong>Distinction</strong>
-        </div>
-
-        {% elif Marks >= 60 %}
-        <div class="alert alert-primary text-center">
-            <strong>First Class</strong>
-        </div>
-
-        {% elif Marks >= 35 %}
-        <div class="alert alert-warning text-center">
-            <strong>Pass</strong>
-        </div>
-
-        {% else %}
-        <div class="alert alert-danger text-center">
-            <strong>Fail</strong>
-        </div>
-        {% endif %}
     </div>
 
 </div>
 
-{% endblock %}
+{% endblock %} 
