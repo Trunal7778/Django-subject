@@ -1,51 +1,75 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
+{% load static %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+{% block title %}
+Home
+{% endblock %}
 
-<body>
-    <h1>Welcome to Template</h1> 
-
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Python.svg/1280px-Python.svg.png?utm_source=en.wikiversity.org&utm_campaign=index&utm_content=thumbnail" alt="Python Logo" width="250">
-
-    <p>
-        Name: {{ data.name }} <br>
-        Course: {{ data.course }} <br>
-        Collage: {{ data.collage }} <br>
-    </p>
-
-    <p>List of Course <b>Looping used for</b></p>
-    <ul>
-        {% for sub in subject %}
-        <li>
-            {{ sub }}
-            {% if sub == 'Django' %}
-            <span style=" color:red;"> : Interested Subject</span>
-            {% endif %}
-        </li>
-        {% endfor %}
-    </ul>
-
-    <h2>Student Marks: {{ marks }}</h2>
-
-    {% if marks >= 75 %}
-    <p style="color:green;">Student got Distinction</p>
-    {% elif marks >= 60 %}
-    <p style="color:blue;">Student got First Division</p>
-    {% elif marks >= 35 %}
-    <p style="color:orange;">Student got Second Division</p>
-    {% else %}
-    <p style="color:red;">Student failed</p>
-    {% endif %}
-
-    <a href="/contact/">Contact</a> <br>
-    <a href="/about/">About</a>
+{% block content %}
 
 
-</body>
 
-</html>
+<div class="container mt-4">
+
+    <div class="card shadow p-4">
+        <h2 class="text-center text-primary mb-3">Welcome to Student Management System</h2>
+
+
+
+
+        <p>This is the home page.</p>
+
+        <img src="{% static 'image/Logo.png' %}" alt="Demo Image" height="200" width="300" />
+
+        <h3 class="mt-4">Welcome to the Trunal's Page</h3>
+
+        <p><strong>Name:</strong> {{ data.name }}</p>
+        <p><strong>Course:</strong> {{ data.course }}</p>
+        <p><strong>College:</strong> {{ data.collage }}</p>
+
+        <h4 class="mt-4">List of Courses</h4>
+
+        <ul class="list-group mb-4">
+            {% for sub in subject %}
+            <li class="list-group-item">
+                {{ sub }}
+                {% if sub == 'Django' %}
+                <span class="highlight">(Interested Subject)</span>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+
+        <div class="mb-4">
+            <a href="about" class="btn btn-primary">About</a>
+            <a href="contact" class="btn btn-secondary">Contact</a>
+            <button class="btn_custom" onclick="ShowAlert();">Demo static content</button>
+        </div>
+
+        <h3>Student Result</h3>
+
+        {% if Marks >= 75 %}
+        <div class="alert alert-success text-center">
+            <strong>Distinction</strong>
+        </div>
+
+        {% elif Marks >= 60 %}
+        <div class="alert alert-primary text-center">
+            <strong>First Class</strong>
+        </div>
+
+        {% elif Marks >= 35 %}
+        <div class="alert alert-warning text-center">
+            <strong>Pass</strong>
+        </div>
+
+        {% else %}
+        <div class="alert alert-danger text-center">
+            <strong>Fail</strong>
+        </div>
+        {% endif %}
+    </div>
+
+</div>
+
+{% endblock %}

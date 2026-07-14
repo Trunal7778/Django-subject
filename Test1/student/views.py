@@ -17,7 +17,7 @@ def home(request):
      'collage': 'JG UNIVERSITY' 
     } 
     subject = ['python','Django','agile','angular', 'Big data']
-    return render(request, 'index.html',{'data': data, 'subject': subject, 'marks': 38})
+    return render(request, 'index.html',{'data': data, 'subject': subject, 'Marks': 80})
 
 def contact(request):
     return render(request, 'contact.html')
