@@ -1,7 +1,7 @@
 
 from django.shortcuts import get_object_or_404, redirect, render
 
-from.models import Student
+from.models import Attendance, Student
 
 #from django.http import HttpResponse
 # Create your views here.
@@ -43,4 +43,8 @@ def student_edit(request, id):
 def student_delete(request, id):
     student = get_object_or_404(Student, id=id)
     student.delete()
-    return redirect('studentList')
+    return redirect('studentList')  
+
+def attendance_list(request):
+    attendance_records = Attendance.objects.all()
+    return render(request, 'student_crud/attendencelist.html', {'attendance_records': attendance_records})
