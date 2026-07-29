@@ -47,4 +47,20 @@ def student_delete(request, id):
 
 def attendance_list(request):
     attendance_records = Attendance.objects.all()
-    return render(request, 'student_crud/attendencelist.html', {'attendance_records': attendance_records})
+    return render(request, 'student_crud/attendencelist.html', {'attendance_records': attendance_records}) 
+
+def add(request):
+    if request.method == 'POST':
+        name = request.POST.get('name', '').strip()
+        email = request.POST.get('email', '').strip()
+        mobile = request.POST.get('mobile', '').strip()
+       
+
+        student = Student.objects.create(
+            name=name,
+            email=email,
+            mobile=mobile,
+        )
+        return redirect('studentList')
+
+    return render(request, 'Student_Crud/add.html',{})

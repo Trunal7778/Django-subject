@@ -5,7 +5,9 @@
 <div class="card shadow-lg border-0 rounded-4">
 
     <div class="card-header bg-primary text-white text-center py-3">
-        <h2 class="mb-0">Student List</h2>
+        <h2 class="mb-0">Student List</h2>   
+
+        <a href="{% url 'add' %}" class="btn btn-light btn-sm fw-bold">Add New Student</a>
     </div>
 
     <div class="card-body">
@@ -26,7 +28,7 @@
                     <th scope="row">{{ forloop.counter }}</th> 
                     <td>{{ student.name }}</td>
                     <td>{{ student.email }}</td>
-                    <td>{{ student.mobile }}</td>
+                    <td>{{ student.mobile }}</td> 
                     <td>
                         <!-- Action buttons (Edit/Delete) -->
                         <a href="{% url 'student_edit' student.id %}" class="btn btn-sm btn-warning">Edit</a>
