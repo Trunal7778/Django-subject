@@ -1,7 +1,10 @@
 
+from collections import OrderedDict
+
 from django.shortcuts import get_object_or_404, redirect, render
 
-from.models import Attendance, Student
+from.models import Attendance, Student 
+
 
 #from django.http import HttpResponse
 # Create your views here.
@@ -46,8 +49,13 @@ def student_delete(request, id):
     return redirect('studentList')  
 
 def attendance_list(request):
-    attendance_records = Attendance.objects.all()
-    return render(request, 'student_crud/attendencelist.html', {'attendance_records': attendance_records}) 
+    attendance_records = Attendance.objects.select_related('student').order_by('date', 'student__name')
+    grouped_records = OrderedDict()
+
+    for record in attendance_records:
+        grouped_records.setdefault(record.date, []).append(record)
+
+    return render(request, 'student_crud/attendencelist.html', {'attendance_by_date': grouped_records.items()}) 
 
 def add(request):
     if request.method == 'POST':
@@ -63,4 +71,21 @@ def add(request):
         )
         return redirect('studentList')
 
-    return render(request, 'Student_Crud/add.html',{})
+    return render(request, 'student_crud/add.html', {})
+
+def add_attendance(request):
+    if request.method == 'POST':
+        student_id = request.POST.get('student_id')
+        date = request.POST.get('date')
+        status = request.POST.get('status')
+
+        student = get_object_or_404(Student, id=student_id)
+
+        attendance = Attendance.objects.create(
+            student=student,
+            date=date,
+            status=status,
+        )
+        return redirect('attendance_list')
+
+   
