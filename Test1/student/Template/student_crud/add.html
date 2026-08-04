@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Student</title>
 
-    <!-- <style>
+      <style>
         *{
             margin:0;
             padding:0;
@@ -81,12 +81,12 @@
         button:active{
             transform:scale(.98);
         }
-    </style> -->
+    </style> 
 
 </head>
 <body>
 
-<div class="container">
+<!-- <div class="container">
 
     <h1>🎓 Add Student</h1>
 
@@ -110,9 +110,18 @@
 <br/>
         <button type="submit">💾 Save Student</button>
 
-    </form>
+    </form> -->
+ 
+
+    
+<form method="POST"> 
+        <h2>Add Student with django forms</h2>
+    {% csrf_token %}
+    {{ form.as_p }} <br/>
+    <button type="submit">Save</button>
+</form> 
 
 </div>
 
 </body>
-</html>
+</html> 

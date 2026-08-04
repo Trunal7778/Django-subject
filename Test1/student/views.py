@@ -5,6 +5,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 
 from.models import Attendance, Student 
 
+from .forms import StudentForm
 
 #from django.http import HttpResponse
 # Create your views here.
@@ -57,21 +58,32 @@ def attendance_list(request):
 
     return render(request, 'student_crud/attendencelist.html', {'attendance_by_date': grouped_records.items()}) 
 
-def add(request):
-    if request.method == 'POST':
-        name = request.POST.get('name', '').strip()
-        email = request.POST.get('email', '').strip()
-        mobile = request.POST.get('mobile', '').strip()
+# def add(request):
+#     if request.method == 'POST':
+#         name = request.POST.get('name', '').strip()
+#         email = request.POST.get('email', '').strip()
+#         mobile = request.POST.get('mobile', '').strip()
        
 
-        student = Student.objects.create(
-            name=name,
-            email=email,
-            mobile=mobile,
-        )
-        return redirect('studentList')
+#         student = Student.objects.create(
+#             name=name,
+#             email=email,
+#             mobile=mobile,
+#         )
+#         return redirect('studentList')
 
-    return render(request, 'student_crud/add.html', {})
+#     return render(request, 'student_crud/add.html', {}) 
+
+def student_add(request):
+    if request.method == 'POST':
+         form = StudentForm(request.POST)
+         if form.is_valid():
+             form.save()
+             return redirect('studentList')
+    else:
+        form = StudentForm()
+    return render(request, 'student_crud/add.html', {'form': form})
+
 
 def add_attendance(request):
     if request.method == 'POST':
