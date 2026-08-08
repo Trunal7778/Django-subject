@@ -3,9 +3,15 @@ from collections import OrderedDict
 
 from django.shortcuts import get_object_or_404, redirect, render
 
-from.models import Attendance, Student 
+from.models import Attendance, Course, Student 
 
-from .forms import StudentForm
+from .forms import StudentForm 
+
+from .forms import CourseForm
+
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+
+from django.urls import reverse_lazy 
 
 #from django.http import HttpResponse
 # Create your views here.
@@ -100,4 +106,16 @@ def add_attendance(request):
         )
         return redirect('attendance_list')
 
-   
+
+class CourseCreateView(CreateView):
+    model = Course
+    form_class = CourseForm
+    template_name = 'course_crud/courseform.html'
+    success_url = reverse_lazy('course_list')
+
+class CourseListView(ListView):
+    model = Course
+    template_name = 'course_crud/course_list.html'
+    context_object_name = 'courses'
+    queryset = Course.objects.all().order_by('-id')
+    success_url = reverse_lazy('course_list')
